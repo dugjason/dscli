@@ -163,7 +163,5 @@ module Dscli
       response = @datasift.managed_source.log(id,1,20)
       response[:data]
     end
-
   end
-
 end
