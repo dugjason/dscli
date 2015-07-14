@@ -119,6 +119,14 @@ module Dscli
       return @datasift.historics.delete(id)
     end
 
+    def historics_pause(id)
+      return @datasift.historics.pause(id)
+    end
+
+    def historics_resume(id)
+      return @datasift.historics.resume(id)
+    end
+
     #######################################################
     #     MANAGED SOURCES
     #######################################################
