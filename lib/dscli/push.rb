@@ -77,4 +77,38 @@ class Push < Thor
     end
   end
 
+  desc 'pause (id)', 'Pauses a push subscription'
+  def pause(id)
+    api = Dscli::API.new
+
+    begin
+      response = api.push_pause(id)
+
+      if response[:http][:status] == 204
+        puts "Push subscription #{id} paused successfully"
+      else
+        response
+      end
+    rescue ApiResourceNotFoundError => e
+      puts "Specified push subscription '#{id}' not found."
+    end
+  end
+
+  desc 'resume (id)', 'Resumes a paused push subscription'
+  def resume(id)
+    api = Dscli::API.new
+
+    begin
+      response = api.push_resume(id)
+
+      if response[:http][:status] == 204
+        puts "Push subscription #{id} resumed successfully"
+      else
+        response
+      end
+    rescue ApiResourceNotFoundError => e
+      puts "Specified push subscription '#{id}' not found."
+    end
+  end
+
 end

@@ -87,15 +87,22 @@ module Dscli
     end
 
     def push_log(id)
-
       if id.nil?
         response = @datasift.push.log
       else
         response = @datasift.push.log_for(id)
       end
-
       return response[:data]
+    end
 
+    def push_pause(id)
+      response = @datasift.push.pause(id)
+      return response
+    end
+
+    def push_resume(id)
+      response = @datasift.push.resume(id)
+      return response
     end
 
     #######################################################
