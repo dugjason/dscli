@@ -87,15 +87,22 @@ module Dscli
     end
 
     def push_log(id)
-
       if id.nil?
         response = @datasift.push.log
       else
         response = @datasift.push.log_for(id)
       end
-
       return response[:data]
+    end
 
+    def push_pause(id)
+      response = @datasift.push.pause(id)
+      return response
+    end
+
+    def push_resume(id)
+      response = @datasift.push.resume(id)
+      return response
     end
 
     #######################################################
@@ -117,6 +124,14 @@ module Dscli
 
     def historics_delete(id)
       return @datasift.historics.delete(id)
+    end
+
+    def historics_pause(id)
+      return @datasift.historics.pause(id)
+    end
+
+    def historics_resume(id)
+      return @datasift.historics.resume(id)
     end
 
     #######################################################
@@ -148,7 +163,5 @@ module Dscli
       response = @datasift.managed_source.log(id,1,20)
       response[:data]
     end
-
   end
-
 end
