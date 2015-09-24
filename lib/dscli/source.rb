@@ -18,7 +18,7 @@ class Source < Thor
     api = Dscli::API.new
     response = api.source_get(id)
     puts response[:data].to_yaml
-  rescue ApiResourceNotFoundError => e
+  rescue ApiResourceNotFoundError
     puts "Specified managed source '#{id}' was not found. It may have been deleted."
   end
 
@@ -33,7 +33,7 @@ class Source < Thor
       # TODO: How do we handle a different code?
       response
     end
-  rescue ApiResourceNotFoundError => e
+  rescue ApiResourceNotFoundError
     puts "Specified source '#{id}' not found. It may have been deleted."
   end
 
@@ -48,7 +48,7 @@ class Source < Thor
       # TODO: How do we handle a different code?
       response
     end
-  rescue ApiResourceNotFoundError => e
+  rescue ApiResourceNotFoundError
     puts "Specified source '#{id}' not found. It may have been deleted."
   end
 
@@ -62,7 +62,7 @@ class Source < Thor
     else
       response
     end
-  rescue ApiResourceNotFoundError => e
+  rescue ApiResourceNotFoundError
     puts "Source '#{id}' not found. It may have been deleted."
   end
 
@@ -78,7 +78,7 @@ class Source < Thor
 	  results[:log_entries].each { |s| puts "#{Time.at(s[:event_time]) } | #{ '%-50.50s' % s[:message] }" }
 	  puts "\n"
 
-  rescue ApiResourceNotFoundError => e
+  rescue ApiResourceNotFoundError
     puts "Specified source '#{id}' not found. It may have been deleted."
   end
 end
